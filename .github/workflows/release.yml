@@ -31,7 +31,7 @@ jobs:
           version: 0.14.1
       - name: Build and deploy
         run: |
-          ./gradlew build
+          ./gradlew publish
           mkdir -p release
           cp $(find ./build/libs -maxdepth 1 -type f -name "*.jar") ./release/
       - uses: actions/upload-artifact@main
@@ -40,3 +40,8 @@ jobs:
           name: librnnoise4j
           path: |
                 **/librnnoise4j.so
+
+      - uses: actions/upload-artifact@main
+        with:
+          name: rnnoise4j-java
+          path: ./release/
